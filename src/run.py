@@ -30,6 +30,7 @@ source_path = "./src"
 
 # build the index using the product catalog docs from data/3-product-info
 def build_cogsearch_index(index_name, path_to_data):
+    print(index_name)
     from azure.ai.resources.operations._index_data_source import LocalSource, ACSOutputConfig
     from azure.ai.generative.index import build_index
 
@@ -255,7 +256,10 @@ if __name__ == "__main__":
             chat_module = "copilot_aisdk.chat"
 
     if args.build_index:
-        build_cogsearch_index(os.getenv("AZURE_AI_SEARCH_INDEX_NAME"), "./data/3-product-info")
+        # build_cogsearch_index(os.getenv("AZURE_AI_SEARCH_INDEX_NAME"), "./data/3-product-info")
+        
+        build_cogsearch_index("product-info", "./data/3-product-info")
+
     elif args.evaluate:
         evaluation_name = args.evaluation_name if args.evaluation_name else f"test-{args.implementation}-copilot"
         result, tabular_result = run_evaluation(chat_completion, name=evaluation_name,
